@@ -178,6 +178,13 @@ body {
     max-width: 600px;
     margin: 0 auto 3rem;
 }
+.highlight-name {
+    color: var(--text-main); /* Makes it bright white */
+    font-weight: 700;        /* Makes it bold */
+    font-size: 1.1em;        /* Makes it slightly larger */
+    border-bottom: 2px solid var(--accent); /* Adds a cyan underline */
+    padding-bottom: 2px;
+}
 
 .hero-actions {
     display: flex;
