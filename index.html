@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="midnight-cyber">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,12 @@
             <a href="#work">Work</a>
             <a href="#experience">Experience</a>
             <a href="#contact" class="nav-cta">Hire Me</a>
+            
+            <div class="theme-switcher">
+                <button class="theme-btn active" data-set-theme="midnight-cyber" title="Cyber Glass"><i class="ri-moon-clear-line"></i></button>
+                <button class="theme-btn" data-set-theme="hg-style" title="HG Style"><i class="ri-leaf-line"></i></button>
+                <button class="theme-btn" data-set-theme="light-mode" title="Light Mode"><i class="ri-sun-line"></i></button>
+            </div>
         </div>
     </nav>
 
@@ -44,7 +50,7 @@
                 <a href="https://github.com/Tathya-Dixit" target="_blank" class="btn secondary-btn">
                     <i class="ri-github-fill"></i> GitHub
                 </a>
-                <a href="Tathya_s_Resume.pdf" download="Tathya_Dixit_Resume" class="btn outline-btn">
+                <a href="Resources/Tathya_s_Resume.pdf" download="Tathya_Dixit_Resume" class="btn outline-btn">
                     <i class="ri-file-download-line"></i> Download CV
                 </a>
             </div>
@@ -69,9 +75,34 @@
             <p>High-performance applications built for scale.</p>
         </div>
 
+        <div class="featured-project glass fade-in-up">
+            <div class="featured-media">
+                <video src="Resources/ExpenseFlow.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <div class="featured-content">
+                <div class="badge" style="margin-bottom: 1rem; display: inline-block;">Latest Release</div>
+                <h3>Expense-Flow</h3>
+                <p class="project-desc">A comprehensive application designed to track and manage expenses seamlessly. Features a decoupled architecture with independent backend APIs and a responsive frontend client.</p>
+                <div class="tech-stack" style="margin-bottom: 2rem;">
+                    <span>Django REST</span>
+                    <span>Frontend</span>
+                    <span>APIs</span>
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="featured-links">
+                    <a href="https://github.com/Tathya-Dixit/Expense-Flow-APIs" target="_blank" class="btn primary-btn" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">
+                        <i class="ri-server-line"></i> Backend APIs
+                    </a>
+                    <a href="https://github.com/Tathya-Dixit/Expense-Flow-Frontend" target="_blank" class="btn secondary-btn" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">
+                        <i class="ri-layout-masonry-line"></i> Frontend Code
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="projects-grid">
             
-            <div class="project-card glass fade-in-up">
+            <div class="project-card glass fade-in-up" style="transition-delay: 100ms;">
                 <div class="card-glow"></div>
                 <div class="project-header">
                     <div class="folder-icon"><i class="ri-restaurant-fill"></i></div>
@@ -89,7 +120,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass fade-in-up" style="transition-delay: 100ms;">
+            <div class="project-card glass fade-in-up" style="transition-delay: 200ms;">
                 <div class="card-glow"></div>
                 <div class="project-header">
                     <div class="folder-icon"><i class="ri-server-fill"></i></div>
@@ -107,7 +138,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass fade-in-up" style="transition-delay: 200ms;">
+            <div class="project-card glass fade-in-up" style="transition-delay: 300ms;">
                 <div class="card-glow"></div>
                 <div class="project-header">
                     <div class="folder-icon"><i class="ri-folder-3-fill"></i></div>
@@ -124,8 +155,8 @@
                     <span>Llama 3</span>
                 </div>
             </div>
-            
-            <div class="project-card glass fade-in-up" style="transition-delay: 300ms;">
+
+            <div class="project-card glass fade-in-up" style="transition-delay: 400ms;">
                 <div class="card-glow"></div>
                 <div class="project-header">
                     <div class="folder-icon"><i class="ri-database-2-fill"></i></div>
