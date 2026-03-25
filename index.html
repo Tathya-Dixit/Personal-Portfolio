@@ -37,37 +37,60 @@
     <header class="hero">
         <div class="hero-content fade-in-up">
             <div class="badge">Django Specialist & API Architect</div>
-            <h1>I build the engines that<br> <span class="gradient-text">power the web.</span></h1>
+            
+            <h1>I build the engines that<br> <span class="gradient-text"><span id="typewriter"></span><span class="cursor">|</span></span></h1>
+            
             <p class="hero-sub">
                 <span class="highlight-name">Tathya Dixit</span>. Backend Developer focused on scalable systems, 
                 database optimization, and high-performance APIs.
             </p>            
             
             <div class="hero-actions">
-                <a href="#work" class="btn primary-btn">
+                <a href="#work" class="btn primary-btn magnetic-btn">
                     View Projects <i class="ri-arrow-right-line"></i>
                 </a>
-                <a href="https://github.com/Tathya-Dixit" target="_blank" class="btn secondary-btn">
+                <a href="https://github.com/Tathya-Dixit" target="_blank" class="btn secondary-btn magnetic-btn">
                     <i class="ri-github-fill"></i> GitHub
                 </a>
-                <a href="Resources/Tathya_s_Resume.pdf" download="Tathya_Dixit_Resume" class="btn outline-btn">
+                <a href="Resources/Tathya_s_Resume.pdf" download="Tathya_Dixit_Resume" class="btn outline-btn magnetic-btn">
                     <i class="ri-file-download-line"></i> Download CV
                 </a>
             </div>
 
             <div class="stats-row glass">
                 <div class="stat-item">
-                    <span class="stat-num">40+</span>
+                    <span class="stat-num counter" data-target="40">0</span><span class="stat-num">+</span>
                     <span class="stat-label">APIs Built</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <span class="stat-num">3</span>
+                    <span class="stat-num counter" data-target="3">0</span>
                     <span class="stat-label">Companies</span>
                 </div>
             </div>
         </div>
     </header>
+
+    <section class="section-padding" style="padding-top: 2rem; padding-bottom: 2rem;">
+        <div class="terminal-wrapper fade-in-up">
+            <div class="terminal glass">
+                <div class="terminal-header">
+                    <div class="traffic-lights">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="terminal-title">~/tathya-dixit/api-playground</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="command-line">
+                        <span class="prompt">visitor@browser:~$</span>
+                        <span class="command">curl -X GET https://api.tathyadixit.com/v1/profile</span>
+                        <button id="run-cmd-btn" class="btn outline-btn terminal-btn">Send Request</button>
+                    </div>
+                    <pre id="terminal-output" class="language-json">Click 'Send Request' to fetch developer data...</pre>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="work" class="section-padding">
         <div class="section-header fade-in-up">
@@ -223,10 +246,10 @@
             <div class="freelance-links">
                 <p class="freelance-label">Hire me on</p>
                 <div class="freelance-buttons">
-                    <a href="https://www.upwork.com/freelancers/~01354fcf81b60d847e?mp_source=share" target="_blank" class="freelance-btn theme-btn-filled">
+                    <a href="https://www.upwork.com/freelancers/~01354fcf81b60d847e?mp_source=share" target="_blank" class="freelance-btn theme-btn-filled magnetic-btn">
                         Upwork
                     </a>
-                    <a href="https://www.fiverr.com/s/WEAzZzl" target="_blank" class="freelance-btn theme-btn-outline">
+                    <a href="https://www.fiverr.com/s/WEAzZzl" target="_blank" class="freelance-btn theme-btn-outline magnetic-btn">
                         Fiverr
                     </a>
                 </div>
