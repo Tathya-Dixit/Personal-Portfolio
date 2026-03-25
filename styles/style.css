@@ -46,7 +46,7 @@
     --glass-blur: 12px; 
     --grid-color: rgba(0, 0, 0, 0.05); 
     --btn-hover: rgba(0, 0, 0, 0.05); 
-    --term-bg: #0f172a; 
+    --term-bg: #0f172a; /* Terminal stays dark for contrast */
 }
 
 /* --- Base & Utilities --- */
@@ -135,7 +135,7 @@ body {
     min-height: 100vh; display: flex; align-items: center;
     justify-content: center; padding: 8rem 5% 4rem; text-align: center;
 }
-.hero-content { max-width: 900px; width: 100%; }
+.hero-content { max-width: 900px; }
 .badge {
     display: inline-block; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.1);
     border: 1px solid var(--primary); color: var(--primary); border-radius: 30px;
@@ -152,7 +152,7 @@ body {
 /* Buttons & Magnetic Effect */
 .btn {
     text-decoration: none; padding: 1rem 2rem; border-radius: 8px;
-    font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; 
+    font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; 
     transition: background-color 0.3s, box-shadow 0.3s, color 0.3s, transform 0.3s ease-out;
 }
 .magnetic-btn { display: inline-block; }
@@ -171,9 +171,10 @@ body {
 .stat-label { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code); text-transform: uppercase; }
 .stat-divider { width: 1px; height: 40px; background: var(--glass-border); }
 
+
 /* --- API Terminal Mockup --- */
 .terminal-wrapper {
-    max-width: 800px; margin: 0 auto; padding: 0 1rem; width: 100%;
+    max-width: 800px; margin: 0 auto; padding: 0 1rem;
 }
 .terminal {
     background-color: var(--term-bg);
@@ -196,7 +197,6 @@ body {
 
 .terminal-title {
     flex-grow: 1; text-align: center; color: #94a3b8; font-family: var(--font-code); font-size: 0.85rem; padding-right: 48px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .terminal-body {
     padding: 1.5rem; font-family: var(--font-code); color: #e2e8f0; font-size: 0.9rem;
@@ -208,14 +208,15 @@ body {
 .command-line .command { color: var(--accent); flex-grow: 1; min-width: 250px;}
 
 .terminal-btn {
-    padding: 0.4rem 1rem; font-size: 0.8rem; border-radius: 4px; border-color: var(--text-muted); color: var(--text-muted); white-space: nowrap;
+    padding: 0.4rem 1rem; font-size: 0.8rem; border-radius: 4px; border-color: var(--text-muted); color: var(--text-muted);
 }
 .terminal-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.1); }
 .terminal-btn:active { transform: scale(0.95); }
 
 #terminal-output {
-    color: #94a3b8; margin-top: 1rem; min-height: 180px; white-space: pre-wrap; word-break: break-word; line-height: 1.5; overflow-x: auto;
+    color: #94a3b8; margin-top: 1rem; min-height: 180px; white-space: pre-wrap; line-height: 1.5; word-break: break-word;
 }
+
 
 /* --- Projects --- */
 .section-padding { padding: 6rem 5%; }
@@ -225,10 +226,7 @@ body {
 
 /* Projects Grid */
 .projects-grid {
-    display: grid; 
-    /* Changed minmax to 280px to prevent overflow on very small phones */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 2rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
 }
 .project-card {
     padding: 2.5rem; position: relative; overflow: hidden;
@@ -236,7 +234,7 @@ body {
 }
 .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
-.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;}
+.project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
 .folder-icon { color: var(--primary); font-size: 2.5rem; }
 .project-links a {
     color: var(--text-muted); font-size: 1.4rem; margin-left: 1rem;
@@ -314,52 +312,77 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
    MOBILE RESPONSIVE ADJUSTMENTS
    ========================================= */
 @media (max-width: 768px) {
-    /* Navbar Adjustment */
+    /* 1. Navbar Layout Fix */
     .navbar {
         width: 100%; 
         top: 0; 
+        left: 0;
+        transform: none; /* Crucial: stops the menu from sliding halfway off screen */
         border-radius: 0; 
-        border: none;
-        border-bottom: 1px solid var(--glass-border); 
-        flex-direction: column; 
-        gap: 1rem; 
-        padding: 1rem;
-        position: relative; /* Prevent overlapping the hero section */
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding: 1rem 5%;
+        flex-wrap: wrap; /* Allows two-row layout */
+        gap: 0;
+    }
+    .logo {
+        flex: 1; /* Pushes the theme switcher to the right */
+    }
+    .theme-switcher {
+        margin: 0; 
     }
     .nav-links {
-        flex-wrap: wrap;
+        width: 100%; /* Forces links to a new row below the logo */
         justify-content: center;
+        margin-top: 1rem;
         gap: 1rem;
+        flex-wrap: wrap;
     }
-    .theme-switcher { margin-left: 0; margin-top: 0.5rem; }
     
-    /* Hero Adjustments */
+    /* 2. Hero Section Overlap Fix */
     .hero {
-        padding: 4rem 5% 4rem; /* Reduced top padding due to relative navbar */
+        padding: 10rem 5% 4rem; /* Adds massive padding to the top so navbar doesn't cover content */
         min-height: auto;
     }
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    .hero-sub {
+        font-size: 1rem;
+    }
+    
+    /* 3. Hero Buttons Fix */
     .hero-actions {
-        flex-direction: column;
+        flex-direction: column; /* Stacks the buttons vertically */
         width: 100%;
+    }
+    .hero-actions .magnetic-btn {
+        width: 100%;
+        display: flex; /* Ensures the wrapper doesn't break width */
     }
     .hero-actions .btn {
         width: 100%;
+        justify-content: center;
     }
 
-    /* Stats Bar Adjustments */
+    /* 4. Stats Row Fix */
     .stats-row { 
         flex-direction: column; 
         gap: 1.5rem; 
-        padding: 2rem; 
+        padding: 1.5rem; 
         width: 100%; 
     }
-    /* Change vertical divider to horizontal */
     .stat-divider { 
         width: 100%; 
-        height: 1px; 
+        height: 1px; /* Turns the vertical line horizontal */
     }
 
-    /* Terminal Adjustments */
+    /* 5. Terminal Scaling Fix */
+    .terminal-wrapper {
+        padding: 0; /* Lets terminal span full width of screen */
+    }
     .command-line { 
         flex-direction: column; 
         align-items: flex-start; 
@@ -367,27 +390,36 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
     }
     .command-line .command {
         min-width: 100%;
-        word-break: break-all; /* Prevent long URLs from breaking layout */
+        word-break: break-all; /* Stops long URLs from breaking the screen horizontally */
     }
-    .terminal-title { display: none; } /* Hide title on small screens */
-    .terminal-btn { align-self: stretch; text-align: center; }
+    .terminal-title { 
+        display: none; /* Hides title to keep top bar clean on small screens */
+    } 
+    .terminal-btn { 
+        width: 100%; 
+        text-align: center;
+        margin-top: 0.5rem;
+    }
 
-    /* Project Grid & Cards */
+    /* 6. Projects Grid Fix */
     .projects-grid { 
-        grid-template-columns: 1fr; /* Force 1 column on mobile */
+        grid-template-columns: 1fr; /* Forces exactly 1 column layout */
     }
     .project-card {
-        padding: 1.5rem; /* Reclaim screen space */
+        padding: 1.5rem; /* Recovers lost screen real-estate */
     }
-    .project-links a { margin-left: 0; margin-right: 1rem; }
+    .project-links a { 
+        margin-left: 0; 
+        margin-right: 1rem; 
+    }
 
-    /* Timeline Adjustments */
+    /* 7. Timeline Fixes */
     .timeline-wrapper { padding-left: 1rem; }
-    .timeline-marker { left: -1.4rem; width: 12px; height: 12px; }
+    .timeline-marker { left: -1.3rem; width: 12px; height: 12px; }
     .timeline-content { padding: 1.5rem; }
-    .timeline-content::before { display: none; } /* Hide arrow pointer */
+    .timeline-content::before { display: none; }
 
-    /* Footer Adjustments */
+    /* 8. Footer Adjustments */
     .freelance-buttons {
         flex-direction: column;
     }
