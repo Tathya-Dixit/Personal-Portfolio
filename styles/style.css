@@ -107,25 +107,33 @@ body {
     transform: translateX(-50%); width: 90%; max-width: 1200px;
     z-index: 100; border-radius: 50px;
 }
+
 .nav-brand {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
 .logo .dot { color: var(--accent); }
 
+/* Hide hamburger on desktop */
 .mobile-toggle {
-    display: none; 
+    display: none;
     background: none;
     border: none;
     color: var(--text-main);
     font-size: 1.8rem;
     cursor: pointer;
-    padding: 0.5rem;
 }
 
 .nav-content {
-    display: flex; align-items: center; justify-content: flex-end; width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 }
+
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: color 0.3s; }
 .nav-links a:hover { color: var(--text-main); }
@@ -307,7 +315,7 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
 }
 
 @media (max-width: 768px) {
-    /* Navbar Hamburger Layout Fix */
+    /* 1. Navbar Layout Fix */
     .navbar {
         flex-direction: column;
         align-items: stretch;
@@ -321,8 +329,19 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
         border-right: none;
         padding: 1rem 1.5rem;
     }
-    .nav-brand { width: 100%; }
-    .mobile-toggle { display: block; }
+    
+    .nav-brand {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .mobile-toggle {
+        display: block; /* Show hamburger button on mobile */
+    }
+
+    /* Hide the menu content by default on mobile */
     .nav-content {
         display: none; 
         flex-direction: column;
@@ -332,38 +351,66 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
         border-top: 1px solid var(--glass-border);
         margin-top: 1rem;
     }
-    .nav-content.active { display: flex; }
-    .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 1.5rem; }
-    .nav-links a { font-size: 1.1rem; }
-    .nav-cta { display: inline-block; }
-    .theme-switcher { margin: 1.5rem auto 0; }
+
+    /* Show the menu when JS adds the 'active' class */
+    .nav-content.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 1.5rem;
+    }
     
-    /* Hero Fixes */
-    .hero { padding: 8rem 5% 4rem; min-height: auto; }
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+    
+    .nav-cta {
+        display: inline-block;
+    }
+    
+    .theme-switcher {
+        margin: 1.5rem auto 0;
+    }
+    
+    /* 2. Hero Section Overlap Fix */
+    .hero {
+        padding: 8rem 5% 4rem; 
+        min-height: auto;
+    }
     .hero h1 { font-size: 2.2rem; line-height: 1.2; }
     .hero-sub { font-size: 1rem; }
+    
+    /* 3. Hero Buttons Fix */
     .hero-actions { flex-direction: column; width: 100%; }
     .hero-actions .magnetic-btn { width: 100%; display: flex; }
     .hero-actions .btn { width: 100%; justify-content: center; }
 
-    /* Stats Fixes */
+    /* 4. Stats Row Fix */
     .stats-row { flex-direction: column; gap: 1.5rem; padding: 1.5rem; width: 100%; }
     .stat-divider { width: 100%; height: 1px; }
 
-    /* Terminal Fixes */
+    /* 5. Terminal Scaling Fix */
     .terminal-wrapper { padding: 0; }
     .command-line { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
     .command-line .command { min-width: 100%; word-break: break-all; }
     .terminal-title { display: none; } 
     .terminal-btn { width: 100%; text-align: center; margin-top: 0.5rem; }
 
-    /* Layout Fixes */
+    /* 6. Projects Grid Fix */
     .project-card { padding: 1.5rem; }
     .project-links a { margin-left: 0; margin-right: 1rem; }
+
+    /* 7. Timeline Fixes */
     .timeline-wrapper { padding-left: 1rem; }
     .timeline-marker { left: -1.3rem; width: 12px; height: 12px; }
     .timeline-content { padding: 1.5rem; }
     .timeline-content::before { display: none; }
+
+    /* 8. Footer Adjustments */
     .freelance-buttons { flex-direction: column; }
     .freelance-btn { width: 100%; text-align: center; }
 }
