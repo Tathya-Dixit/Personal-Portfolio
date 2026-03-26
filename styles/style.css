@@ -46,7 +46,7 @@
     --glass-blur: 12px; 
     --grid-color: rgba(0, 0, 0, 0.05); 
     --btn-hover: rgba(0, 0, 0, 0.05); 
-    --term-bg: #0f172a; /* Terminal stays dark for contrast */
+    --term-bg: #0f172a; 
 }
 
 /* --- Base & Utilities --- */
@@ -107,8 +107,25 @@ body {
     transform: translateX(-50%); width: 90%; max-width: 1200px;
     z-index: 100; border-radius: 50px;
 }
+.nav-brand {
+    display: flex; justify-content: space-between; align-items: center;
+}
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
 .logo .dot { color: var(--accent); }
+
+.mobile-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.nav-content {
+    display: flex; align-items: center; justify-content: flex-end; width: 100%;
+}
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: color 0.3s; }
 .nav-links a:hover { color: var(--text-main); }
@@ -135,7 +152,7 @@ body {
     min-height: 100vh; display: flex; align-items: center;
     justify-content: center; padding: 8rem 5% 4rem; text-align: center;
 }
-.hero-content { max-width: 900px; }
+.hero-content { max-width: 900px; width: 100%; }
 .badge {
     display: inline-block; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.1);
     border: 1px solid var(--primary); color: var(--primary); border-radius: 30px;
@@ -152,7 +169,7 @@ body {
 /* Buttons & Magnetic Effect */
 .btn {
     text-decoration: none; padding: 1rem 2rem; border-radius: 8px;
-    font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; 
+    font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; 
     transition: background-color 0.3s, box-shadow 0.3s, color 0.3s, transform 0.3s ease-out;
 }
 .magnetic-btn { display: inline-block; }
@@ -171,51 +188,59 @@ body {
 .stat-label { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code); text-transform: uppercase; }
 .stat-divider { width: 1px; height: 40px; background: var(--glass-border); }
 
+/* --- Interactive Dashboard (Terminal & Chart) --- */
+.interactive-dashboard {
+    max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; padding: 0 1rem;
+}
 
-/* --- API Terminal Mockup --- */
-.terminal-wrapper {
-    max-width: 800px; margin: 0 auto; padding: 0 1rem;
-}
-.terminal {
-    background-color: var(--term-bg);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-.terminal-header {
-    background: rgba(255,255,255,0.05);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--glass-border);
-}
+/* 1. Terminal Styles */
+.terminal { background-color: var(--term-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; }
+.terminal-header { background: rgba(255,255,255,0.05); padding: 12px 16px; display: flex; align-items: center; border-bottom: 1px solid var(--glass-border); }
 .traffic-lights { display: flex; gap: 6px; }
 .traffic-lights span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
 .traffic-lights span:nth-child(1) { background: #ff5f56; }
 .traffic-lights span:nth-child(2) { background: #ffbd2e; }
 .traffic-lights span:nth-child(3) { background: #27c93f; }
 
-.terminal-title {
-    flex-grow: 1; text-align: center; color: #94a3b8; font-family: var(--font-code); font-size: 0.85rem; padding-right: 48px;
-}
-.terminal-body {
-    padding: 1.5rem; font-family: var(--font-code); color: #e2e8f0; font-size: 0.9rem;
-}
-.command-line {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-bottom: 1rem;
-}
+.terminal-title { flex-grow: 1; text-align: center; color: #94a3b8; font-family: var(--font-code); font-size: 0.85rem; padding-right: 48px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.terminal-body { padding: 1.5rem; font-family: var(--font-code); color: #e2e8f0; font-size: 0.9rem; flex-grow: 1; }
+.command-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
 .command-line .prompt { color: var(--primary); font-weight: bold; }
 .command-line .command { color: var(--accent); flex-grow: 1; min-width: 250px;}
 
-.terminal-btn {
-    padding: 0.4rem 1rem; font-size: 0.8rem; border-radius: 4px; border-color: var(--text-muted); color: var(--text-muted);
-}
+.terminal-btn { padding: 0.4rem 1rem; font-size: 0.8rem; border-radius: 4px; border-color: var(--text-muted); color: var(--text-muted); white-space: nowrap; }
 .terminal-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.1); }
 .terminal-btn:active { transform: scale(0.95); }
 
-#terminal-output {
-    color: #94a3b8; margin-top: 1rem; min-height: 180px; white-space: pre-wrap; line-height: 1.5; word-break: break-word;
+/* TERMINAL OUTPUT WITH SCROLLBAR */
+#terminal-output { 
+    color: #94a3b8; 
+    margin-top: 1rem; 
+    min-height: 180px; 
+    max-height: 250px; 
+    white-space: pre-wrap; 
+    word-break: break-word; 
+    line-height: 1.5; 
+    overflow-x: auto; 
+    overflow-y: auto;  
+    padding-right: 10px; 
 }
+#terminal-output::-webkit-scrollbar { width: 6px; }
+#terminal-output::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
+#terminal-output::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 4px; }
+#terminal-output::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* 2. Metrics Chart Styles */
+.metrics-card { padding: 1.5rem; display: flex; flex-direction: column; background-color: var(--term-bg); border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.metrics-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-family: var(--font-code); color: var(--text-main); }
+.status-indicator { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #10b981; }
+.pulse { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); animation: pulsing 1.5s infinite cubic-bezier(0.66, 0, 0, 1); }
+@keyframes pulsing { to { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } }
+.chart-container { flex-grow: 1; position: relative; min-height: 150px; width: 100%; }
+canvas#latencyChart { width: 100%; height: 100%; display: block; }
+.metrics-footer { display: flex; justify-content: space-between; margin-top: 1.5rem; font-family: var(--font-code); font-size: 0.85rem; }
+.accent-text { color: var(--accent); font-weight: bold; }
+.text-muted { color: var(--text-muted); }
 
 
 /* --- Projects --- */
@@ -225,49 +250,27 @@ body {
 .section-header p { color: var(--accent); font-family: var(--font-code); }
 
 /* Projects Grid */
-.projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;
-}
-.project-card {
-    padding: 2.5rem; position: relative; overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column;
-}
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.project-card { padding: 2.5rem; position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column; }
 .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
 
-.project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;}
 .folder-icon { color: var(--primary); font-size: 2.5rem; }
-.project-links a {
-    color: var(--text-muted); font-size: 1.4rem; margin-left: 1rem;
-    text-decoration: none; transition: color 0.2s;
-}
+.project-links a { color: var(--text-muted); font-size: 1.4rem; margin-left: 1rem; text-decoration: none; transition: color 0.2s; }
 .project-links a:hover { color: var(--accent); }
 
 .project-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main); }
 .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; flex-grow: 1; }
-.tech-stack {
-    display: flex; gap: 1rem; flex-wrap: wrap; font-family: var(--font-code);
-    font-size: 0.8rem; color: var(--accent);
-}
+.tech-stack { display: flex; gap: 1rem; flex-wrap: wrap; font-family: var(--font-code); font-size: 0.8rem; color: var(--accent); }
 
 /* --- Experience Timeline --- */
 .timeline-wrapper { max-width: 800px; margin: 0 auto; position: relative; padding-left: 2rem; }
-.timeline-line {
-    position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(to bottom, var(--primary), var(--bg-card));
-}
+.timeline-line { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary), var(--bg-card)); }
 .timeline-entry { margin-bottom: 3rem; position: relative; padding-left: 2rem; }
-.timeline-marker {
-    position: absolute; left: -2.4rem; top: 0; width: 16px; height: 16px;
-    border-radius: 50%; background: var(--bg-dark); border: 2px solid var(--accent); z-index: 2;
-}
+.timeline-marker { position: absolute; left: -2.4rem; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--bg-dark); border: 2px solid var(--accent); z-index: 2; }
 .timeline-content { padding: 2rem; position: relative; }
-.timeline-content::before {
-    content: ''; position: absolute; left: -10px; top: 20px;
-    border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid var(--glass-border);
-}
-.timeline-content .date {
-    font-family: var(--font-code); color: var(--accent); font-size: 0.85rem; display: block; margin-bottom: 0.5rem;
-}
+.timeline-content::before { content: ''; position: absolute; left: -10px; top: 20px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid var(--glass-border); }
+.timeline-content .date { font-family: var(--font-code); color: var(--accent); font-size: 0.85rem; display: block; margin-bottom: 0.5rem; }
 .timeline-content h3 { font-size: 1.3rem; }
 .timeline-content h4 { color: var(--text-muted); font-weight: 400; margin-bottom: 1rem; }
 
@@ -277,29 +280,17 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
 .email-btn { display: inline-block; margin: 2rem 0; color: var(--accent); font-size: 1.5rem; text-decoration: none; font-weight: 600; transition: color 0.3s; word-break: break-all;}
 .email-btn:hover { color: var(--primary); }
 
-.freelance-links {
-    margin: 2rem 0 3rem; padding: 2rem; border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border); display: inline-block; width: 100%; max-width: 600px;
-}
-.freelance-label {
-    font-family: var(--font-code); color: var(--text-muted); font-size: 0.9rem;
-    margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px;
-}
+.freelance-links { margin: 2rem 0 3rem; padding: 2rem; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); display: inline-block; width: 100%; max-width: 600px; }
+.freelance-label { font-family: var(--font-code); color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
 .freelance-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-.freelance-btn {
-    padding: 0.8rem 2rem; border-radius: 30px; text-decoration: none;
-    font-weight: 700; font-family: var(--font-head); color: white;
-}
+.freelance-btn { padding: 0.8rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-family: var(--font-head); color: white; }
 .theme-btn-filled { background-color: var(--primary); border: 1px solid var(--primary); }
 .theme-btn-filled:hover { background-color: #4f46e5;}
 .theme-btn-outline { background-color: transparent; color: var(--accent); border: 1px solid var(--accent); }
 .theme-btn-outline:hover { background-color: rgba(6, 182, 212, 0.1); color: var(--bg-dark); }
 
 .socials { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;}
-.socials a {
-    color: var(--text-muted); text-decoration: none; font-family: var(--font-code);
-    text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
-}
+.socials a { color: var(--text-muted); text-decoration: none; font-family: var(--font-code); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
 .socials a:hover { color: var(--text-main); }
 .copyright { color: var(--text-muted); font-size: 0.8rem; }
 
@@ -311,117 +302,68 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
 /* =========================================
    MOBILE RESPONSIVE ADJUSTMENTS
    ========================================= */
+@media (max-width: 900px) {
+    .interactive-dashboard { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 768px) {
-    /* 1. Navbar Layout Fix */
+    /* Navbar Hamburger Layout Fix */
     .navbar {
+        flex-direction: column;
+        align-items: stretch;
         width: 100%; 
         top: 0; 
         left: 0;
-        transform: none; /* Crucial: stops the menu from sliding halfway off screen */
+        transform: none; 
         border-radius: 0; 
         border-top: none;
         border-left: none;
         border-right: none;
-        padding: 1rem 5%;
-        flex-wrap: wrap; /* Allows two-row layout */
-        gap: 0;
+        padding: 1rem 1.5rem;
     }
-    .logo {
-        flex: 1; /* Pushes the theme switcher to the right */
-    }
-    .theme-switcher {
-        margin: 0; 
-    }
-    .nav-links {
-        width: 100%; /* Forces links to a new row below the logo */
-        justify-content: center;
+    .nav-brand { width: 100%; }
+    .mobile-toggle { display: block; }
+    .nav-content {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        padding-top: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-top: 1px solid var(--glass-border);
         margin-top: 1rem;
-        gap: 1rem;
-        flex-wrap: wrap;
     }
+    .nav-content.active { display: flex; }
+    .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 1.5rem; }
+    .nav-links a { font-size: 1.1rem; }
+    .nav-cta { display: inline-block; }
+    .theme-switcher { margin: 1.5rem auto 0; }
     
-    /* 2. Hero Section Overlap Fix */
-    .hero {
-        padding: 10rem 5% 4rem; /* Adds massive padding to the top so navbar doesn't cover content */
-        min-height: auto;
-    }
-    .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-    }
-    .hero-sub {
-        font-size: 1rem;
-    }
-    
-    /* 3. Hero Buttons Fix */
-    .hero-actions {
-        flex-direction: column; /* Stacks the buttons vertically */
-        width: 100%;
-    }
-    .hero-actions .magnetic-btn {
-        width: 100%;
-        display: flex; /* Ensures the wrapper doesn't break width */
-    }
-    .hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
+    /* Hero Fixes */
+    .hero { padding: 8rem 5% 4rem; min-height: auto; }
+    .hero h1 { font-size: 2.2rem; line-height: 1.2; }
+    .hero-sub { font-size: 1rem; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .magnetic-btn { width: 100%; display: flex; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
 
-    /* 4. Stats Row Fix */
-    .stats-row { 
-        flex-direction: column; 
-        gap: 1.5rem; 
-        padding: 1.5rem; 
-        width: 100%; 
-    }
-    .stat-divider { 
-        width: 100%; 
-        height: 1px; /* Turns the vertical line horizontal */
-    }
+    /* Stats Fixes */
+    .stats-row { flex-direction: column; gap: 1.5rem; padding: 1.5rem; width: 100%; }
+    .stat-divider { width: 100%; height: 1px; }
 
-    /* 5. Terminal Scaling Fix */
-    .terminal-wrapper {
-        padding: 0; /* Lets terminal span full width of screen */
-    }
-    .command-line { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 0.8rem;
-    }
-    .command-line .command {
-        min-width: 100%;
-        word-break: break-all; /* Stops long URLs from breaking the screen horizontally */
-    }
-    .terminal-title { 
-        display: none; /* Hides title to keep top bar clean on small screens */
-    } 
-    .terminal-btn { 
-        width: 100%; 
-        text-align: center;
-        margin-top: 0.5rem;
-    }
+    /* Terminal Fixes */
+    .terminal-wrapper { padding: 0; }
+    .command-line { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .command-line .command { min-width: 100%; word-break: break-all; }
+    .terminal-title { display: none; } 
+    .terminal-btn { width: 100%; text-align: center; margin-top: 0.5rem; }
 
-    /* 6. Projects Grid Fix */
-    .projects-grid { 
-        grid-template-columns: 1fr; /* Forces exactly 1 column layout */
-    }
-    .project-card {
-        padding: 1.5rem; /* Recovers lost screen real-estate */
-    }
-    .project-links a { 
-        margin-left: 0; 
-        margin-right: 1rem; 
-    }
-
-    /* 7. Timeline Fixes */
+    /* Layout Fixes */
+    .project-card { padding: 1.5rem; }
+    .project-links a { margin-left: 0; margin-right: 1rem; }
     .timeline-wrapper { padding-left: 1rem; }
     .timeline-marker { left: -1.3rem; width: 12px; height: 12px; }
     .timeline-content { padding: 1.5rem; }
     .timeline-content::before { display: none; }
-
-    /* 8. Footer Adjustments */
-    .freelance-buttons {
-        flex-direction: column;
-    }
+    .freelance-buttons { flex-direction: column; }
     .freelance-btn { width: 100%; text-align: center; }
 }

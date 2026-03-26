@@ -20,11 +20,19 @@
     <div class="grid-overlay"></div>
 
     <nav class="navbar glass">
-        <div class="logo">TD<span class="dot">.</span></div>
-        <div class="nav-links">
-            <a href="#work">Work</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact" class="nav-cta">Hire Me</a>
+        <div class="nav-brand">
+            <div class="logo">TD<span class="dot">.</span></div>
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="ri-menu-3-line"></i>
+            </button>
+        </div>
+        
+        <div class="nav-content">
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact" class="nav-cta">Hire Me</a>
+            </div>
             
             <div class="theme-switcher">
                 <button class="theme-btn active" data-set-theme="midnight-cyber" title="Cyber Glass"><i class="ri-moon-clear-line"></i></button>
@@ -72,7 +80,8 @@
     </header>
 
     <section class="section-padding" style="padding-top: 2rem; padding-bottom: 2rem;">
-        <div class="terminal-wrapper fade-in-up">
+        <div class="interactive-dashboard fade-in-up">
+            
             <div class="terminal glass">
                 <div class="terminal-header">
                     <div class="traffic-lights">
@@ -86,9 +95,24 @@
                         <span class="command">curl -X GET https://api.tathyadixit.com/v1/profile</span>
                         <button id="run-cmd-btn" class="btn outline-btn terminal-btn">Send Request</button>
                     </div>
-                    <pre id="terminal-output" class="language-json">Click 'Send Request' to fetch developer data...</pre>
+                    <div id="terminal-output" class="language-json">Click 'Send Request' to fetch developer data...</div>
                 </div>
             </div>
+
+            <div class="metrics-card glass">
+                <div class="metrics-header">
+                    <h4 style="margin: 0; font-weight: 500;">API Latency (ms)</h4>
+                    <span class="status-indicator"><span class="pulse"></span> Online</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="latencyChart"></canvas>
+                </div>
+                <div class="metrics-footer">
+                    <div><span class="text-muted">Avg:</span> <span id="avg-latency" class="accent-text">45ms</span></div>
+                    <div><span class="text-muted">Uptime:</span> <span class="accent-text">99.99%</span></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
