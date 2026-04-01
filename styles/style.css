@@ -46,7 +46,7 @@
     --glass-blur: 12px; 
     --grid-color: rgba(0, 0, 0, 0.05); 
     --btn-hover: rgba(0, 0, 0, 0.05); 
-    --term-bg: #0f172a; 
+    --term-bg: #0f172a; /* Terminal stays dark for contrast */
 }
 
 /* --- Base & Utilities --- */
@@ -250,7 +250,6 @@ canvas#latencyChart { width: 100%; height: 100%; display: block; }
 .accent-text { color: var(--accent); font-weight: bold; }
 .text-muted { color: var(--text-muted); }
 
-
 /* --- Projects --- */
 .section-padding { padding: 6rem 5%; }
 .section-header { margin-bottom: 4rem; max-width: 600px; }
@@ -288,14 +287,35 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
 .email-btn { display: inline-block; margin: 2rem 0; color: var(--accent); font-size: 1.5rem; text-decoration: none; font-weight: 600; transition: color 0.3s; word-break: break-all;}
 .email-btn:hover { color: var(--primary); }
 
+/* Freelance Buttons Fix */
 .freelance-links { margin: 2rem 0 3rem; padding: 2rem; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); display: inline-block; width: 100%; max-width: 600px; }
 .freelance-label { font-family: var(--font-code); color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
 .freelance-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-.freelance-btn { padding: 0.8rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-family: var(--font-head); color: white; }
-.theme-btn-filled { background-color: var(--primary); border: 1px solid var(--primary); }
-.theme-btn-filled:hover { background-color: #4f46e5;}
-.theme-btn-outline { background-color: transparent; color: var(--accent); border: 1px solid var(--accent); }
-.theme-btn-outline:hover { background-color: rgba(6, 182, 212, 0.1); color: var(--bg-dark); }
+
+.freelance-btn { 
+    padding: 0.8rem 2rem; 
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: 700; 
+    font-family: var(--font-head); 
+    transition: all 0.3s ease;
+}
+
+/* For solid buttons (Not currently used in HTML, but kept for future use) */
+.theme-btn-filled { background-color: var(--primary); border: 1px solid var(--primary); color: #ffffff; }
+.theme-btn-filled:hover { background-color: transparent; color: var(--primary); }
+
+/* For Outline Buttons (Upwork, Fiverr, Truelancer) */
+.theme-btn-outline { 
+    background-color: transparent; 
+    color: var(--accent); 
+    border: 1px solid var(--accent); 
+}
+.theme-btn-outline:hover { 
+    background-color: var(--accent); 
+    color: var(--bg-dark) !important; /* Forces the text to match the dark background */
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2); 
+}
 
 .socials { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap;}
 .socials a { color: var(--text-muted); text-decoration: none; font-family: var(--font-code); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
@@ -315,7 +335,7 @@ footer { text-align: center; padding: 8rem 2rem 4rem; background: linear-gradien
 }
 
 @media (max-width: 768px) {
-    /* 1. Navbar Layout Fix */
+    /* 1. Navbar Hamburger Layout Fix */
     .navbar {
         flex-direction: column;
         align-items: stretch;
